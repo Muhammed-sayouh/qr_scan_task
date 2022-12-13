@@ -1,39 +1,32 @@
 import 'package:dio/dio.dart' as dio_package;
 import 'package:flutter/cupertino.dart';
-import 'package:get_storage/get_storage.dart';
-import 'package:qr_scan/helpers/constants.dart';
 import 'package:qr_scan/ui/custom_widgets/custome_toast.dart';
 
 import '../../helpers/dio/dio.dart';
 import '../../helpers/exption.dart';
+import '../helpers/constants.dart';
 
-class LoginService with ChangeNotifier {
-  bool loggedIn = false;
-  Future<bool> loginService(
-      {required String phone, required String password}) async {
-    GetStorage storage = GetStorage();
+class ScanService with ChangeNotifier {
+  bool scanned = false;
+  Future<bool> sentCodeService({required String code}) async {
     try {
-      dio_package.Response response = await dio().post('login-scanner',
-          data: {"phone": phone, "password": password},
+      dio_package.Response response = await dio().post('scan',
+          data: {"code": code},
           options: dio_package.Options(
               contentType: dio_package.Headers.formUrlEncodedContentType));
 
       if (response.data['status'] == 0) {
-        loggedIn = false;
+        scanned = false;
 
         throw HttpExeption(response.data['massage']);
       }
       if (response.data['status'] == 1) {
-        loggedIn = true;
-
-        storage.write(
-          'info',
-          response.data,
-        );
+        scanned = true;
+        customToast(response.data['massage']);
       }
 
       notifyListeners();
-      return loggedIn;
+      return scanned;
     } catch (error) {
       customToast(Constants.checkYourInternet);
       rethrow;

@@ -30,6 +30,8 @@ class Constants {
   static String scanningResultText =
       "Proreader will Keep your last 10 days history to keep your all scared history please purched our pro package";
   static String send = "Send";
+  static String checkYourInternet = "Please check your internet connection";
+
 
   //Base  url
 

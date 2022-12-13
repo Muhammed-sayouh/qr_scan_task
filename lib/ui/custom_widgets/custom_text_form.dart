@@ -42,45 +42,7 @@ class CustomTextFormField extends StatelessWidget {
   }
 }
 
-class CustomTextFormFieldNoBorder extends StatelessWidget {
-  final String hint;
-  final TextInputType? textInputType;
-  final int? maxLines;
-  final TextEditingController? controller;
-  final String? Function(String?)? validator;
 
-  const CustomTextFormFieldNoBorder(
-      {Key? key,
-      required this.hint,
-      this.textInputType,
-      this.maxLines = 1,
-      this.controller,
-      this.validator})
-      : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return TextFormField(
-      controller: controller,
-      validator: validator,
-      cursorColor: AppColors.mainDarkColor,
-      keyboardType: textInputType,
-      maxLines: maxLines,
-      decoration: InputDecoration(
-          border: const UnderlineInputBorder(borderSide: BorderSide.none),
-          focusedBorder: UnderlineInputBorder(
-              borderSide: BorderSide.none,
-              borderRadius: BorderRadius.circular(15)),
-          enabledBorder: const UnderlineInputBorder(
-            borderSide: BorderSide.none,
-          ),
-          hintText: hint,
-          contentPadding: EdgeInsets.symmetric(
-              horizontal: width(context, 0.03),
-              vertical: height(context, 0.015))),
-    );
-  }
-}
 
 // ignore: must_be_immutable
 class CustomTextFormFieldWithSuffix extends StatelessWidget {

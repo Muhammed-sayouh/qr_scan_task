@@ -7,7 +7,9 @@ import 'package:qr_scan/ui/theme/sizes/sizes.dart';
 import 'package:qr_scan/ui/theme/style/colors.dart';
 import 'package:qr_scan/ui/theme/style/font_style.dart';
 
+import '../../../helpers/navigators.dart';
 import '../../../view_model/scan_qr_view_model.dart';
+import '../qr_code_result/qr_code_result_screen.dart';
 
 class QrCodeScreen extends StatefulWidget {
   const QrCodeScreen({Key? key}) : super(key: key);
@@ -17,8 +19,6 @@ class QrCodeScreen extends StatefulWidget {
 }
 
 class _QrCodeScreenState extends State<QrCodeScreen> {
- 
-
   @override
   Widget build(BuildContext context) {
     final provider = Provider.of<ScanQrCodeViewModel>(context);
@@ -53,7 +53,10 @@ class _QrCodeScreenState extends State<QrCodeScreen> {
                         alignment: Alignment.centerRight,
                         child: SizedBox(
                             width: width(context, 0.08),
-                            child: Image.asset(Constants.itemsScanImage))),
+                            child: InkWell(
+                                onTap: () => Navigators.getTo(
+                                    context, const QrCodeRusltScreen()),
+                                child: Image.asset(Constants.itemsScanImage)))),
                     SizedBox(
                       height: height(context, 0.08),
                     ),
