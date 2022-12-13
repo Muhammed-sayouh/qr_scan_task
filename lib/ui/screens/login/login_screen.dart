@@ -35,6 +35,7 @@ class LoginScreen extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextFormField(
+                      textInputType: TextInputType.phone,
                       hint: Constants.phone,
                       controller: provider.phone,
                       validator: (val) =>
